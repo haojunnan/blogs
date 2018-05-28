@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>welcom to haojun's blog system</title>
+    <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.js' %}"></script> 
+  </head>
+  <body background="{% static 'imge/b.jpg' %}">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+        </button>
+        <a class="navbar-brand" href="{% url 'blogs:index' %}">
+          首页</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'blogs:blogpost' %}">博客列表</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+            <li><a>你好, {{ user.username }}.</a></li>
+            <li><a href="{% url 'users:logout' %}">登出</a></li>
+          {% else %}
+            <li><a href="{% url 'users:register' %}">注册</a></li>
+            <li><a href="{% url 'users:login' %}">登录</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <nav>
+      <div class="container">
+        <div class="page-header">
+          {% block header %}{% endblock header %}
+        </div>
+        <div>
+          {% block content %}{% endblock content %}
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

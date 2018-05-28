@@ -1,0 +1,16 @@
+{% extends "blogs/based.html" %}
+{% load bootstrap3 %}
+{% block header %}
+  <h1><a href="{% url 'blogs:maincontents' blog.id %}">{{ blog }}</a></h1>
+{% endblock header%}
+{% block content %}
+  <h2>添加内容:</h2>
+  <form action="{% url 'blogs:new_contents' blog.id %}" method='post' 
+    class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">提交</button>
+    {% endbuttons %}
+  </form>
+{% endblock content %}

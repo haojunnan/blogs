@@ -1,0 +1,16 @@
+{% extends "blogs/based.html" %}
+{% block header %}
+  <div class='pull-right'>
+    <h1>每个人都可以有自己的博客，<br>每个人的博客都与众不同，<br>你是否也想有自己的博客，<br>
+    快加入我们，书写自己的故事吧</h1>
+  </div>
+{% endblock header %}
+{% block content %}
+  <img src="static/imge/q.jpg" class="img-circle" width="600" height="550"/>
+  <div class='pull-right'>
+    <h2>
+      如果你还没有博客，
+      <a href="{% url 'users:register' %}">注册你的博客</a> 把你的故事分享给大家.
+    </h2>
+  </div>
+{% endblock content %}

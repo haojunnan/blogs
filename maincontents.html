@@ -1,0 +1,29 @@
+{% extends "blogs/based.html" %}
+{% block header %}
+  <h1>{{ blog }}</h1>
+   <a href="{% url 'blogs:edit_blog' blog.id%}">修改博客</a>
+   <h1><a href="{% url 'blogs:maincontents' blog.id%}">{{content}}</a></h1>
+{% endblock header %}
+{% block content %}
+  <p>
+    <a href="{% url 'blogs:new_contents' blog.id %}">添加评论</a>
+  </p>
+  {% for content in contents %}
+    <div class="panel panel-default">
+	  <div class="panel-body">
+	    <div>
+	      {{ content.text|linebreaks }}
+        </div>
+	  </div>
+	  <div class="panel-footer">
+	      <small>
+			 {{ content.owner.username }} {{ content.date_add|date:'M d,Y H:i'}} 
+	      </small>
+	      <a href="{% url 'blogs:edit_contents' content.id %}">
+		  修改评论:</a>
+	  </div>
+    </div>
+  {% empty %}
+    There are no contents in this blog.
+  {% endfor %}
+{% endblock content %}
